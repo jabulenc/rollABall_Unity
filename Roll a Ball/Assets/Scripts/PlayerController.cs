@@ -27,4 +27,12 @@ public class PlayerController : MonoBehaviour
 
         playerSphere.AddForce(new Vector3(displacementX, 0f, displacementY) * speed);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PICK_UP_FOR_POINTS"))
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
 }

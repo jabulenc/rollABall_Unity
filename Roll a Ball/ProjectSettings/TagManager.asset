@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PICK_UP_FOR_POINTS
   layers:
   - Default
   - TransparentFX
