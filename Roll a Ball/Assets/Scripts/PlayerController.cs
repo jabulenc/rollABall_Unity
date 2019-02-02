@@ -1,16 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    private int points = 0; // initial is always zero, duh
     private Rigidbody playerSphere;
+    private string baseText = "Boxes Collected: ";
+    private const string WIN_TEXT = "YOU WIN!";
+    private const int MAX_SCORE = 12;
+
     public float speed;
+    public Text pointsText;
+    public Text winText;
+
 
     // Start is called before the first frame update
     void Start()
     {
         playerSphere = GetComponent<Rigidbody>();
+        setPoints();
+        winText.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -33,6 +44,27 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("PICK_UP_FOR_POINTS"))
         {
             other.gameObject.SetActive(false);
+            points++;
+            setPoints();
         }
+    }
+
+    private void setPoints()
+    {
+        pointsText.text = baseText + points;
+        checkScore();
+    }
+
+    private void checkScore()
+    {
+        if (points >= 12) {
+            displayWinText();
+        }
+    }
+
+    private void displayWinText()
+    {
+        winText.gameObject.SetActive(true);
+        pointsText.gameObject.SetActive(false);
     }
 }
