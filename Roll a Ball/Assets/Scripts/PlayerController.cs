@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private string baseText = "Boxes Collected: ";
     private const string WIN_TEXT = "YOU WIN!";
     private const int MAX_SCORE = 12;
+    private bool playerHasWon = false;
 
     public float speed;
     public Text pointsText;
@@ -27,7 +28,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey("escape") && playerHasWon)
+        {
+            Application.Quit();
+        }
     }
 
     // Called just before any PHYSICS calculations
@@ -66,5 +70,6 @@ public class PlayerController : MonoBehaviour
     {
         winText.gameObject.SetActive(true);
         pointsText.gameObject.SetActive(false);
+        playerHasWon = true;
     }
 }
